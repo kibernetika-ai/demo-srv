@@ -1,4 +1,6 @@
+import cv2
 import logging
+import numpy as np
 
 LOG = logging.getLogger(__name__)
 
@@ -18,12 +20,24 @@ def update_hook(ctx, **kwargs):
 
 
 def process(inputs, ctx, **kwargs):
-    test_text = inputs.get('test_text')
+    ret = {
+        'params_text': PARAMS['params_text']
+    }
     test_image = inputs.get('test_image')
+    if test_image is not None:
+        ret['test_image'] = True
+        ret['test_image_video'] = True
+        if len(test_image.shape) < 3:
+            test_image = cv2.imdecode(np.frombuffer(test_image[0], np.uint8), cv2.IMREAD_COLOR)
+            ret['test_image_video'] = False
+            ret['test_image_shape'] = test_image.shape
+    test_text = inputs.get('test_text')
+    if test_text is not None:
+        ret['test_image'] = test_text
     test_int = inputs.get('test_int')
+    if test_int is not None:
+        ret['test_int'] = test_int
     test_float = inputs.get('test_float')
-    LOG.info(f'test_text: {test_text}')
-    LOG.info(f'test_image length: {len(test_image)}')
-    LOG.info(f'test_int: {test_int}')
-    LOG.info(f'test_float: {test_float}')
-    return {'output': '{}{}'.format(PARAMS['params_text'], test_text)}
+    if test_float is not None:
+        ret['test_float'] = test_float
+    return ret
