@@ -25,12 +25,8 @@ def process(inputs, ctx, **kwargs):
     }
     test_image = inputs.get('test_image')
     if test_image is not None:
-        ret['test_image'] = True
-        ret['test_image_video'] = True
-        if len(test_image.shape) < 3:
-            test_image = cv2.imdecode(np.frombuffer(test_image[0], np.uint8), cv2.IMREAD_COLOR)
-            ret['test_image_video'] = False
-            ret['test_image_shape'] = test_image.shape
+        test_image = cv2.imdecode(np.frombuffer(test_image, np.uint8), cv2.IMREAD_COLOR)
+        ret['test_image_shape'] = test_image.shape
     test_text = inputs.get('test_text')
     if test_text is not None:
         ret['test_image'] = test_text
