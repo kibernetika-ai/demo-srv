@@ -20,6 +20,7 @@ def update_hook(ctx, **kwargs):
 
 
 def process(inputs, ctx, **kwargs):
+    LOG.info(inputs)
     ret = {
         'params_text': PARAMS['params_text']
     }
