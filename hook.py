@@ -25,6 +25,9 @@ def process(inputs, ctx, **kwargs):
     }
     test_image = inputs.get('test_image')
     if test_image is not None:
+        LOG.info('test_image:')
+        LOG.info(test_image)
+        LOG.info(type(test_image))
         test_image = cv2.imdecode(np.fromstring(test_image, np.uint8), cv2.IMREAD_COLOR)
         ret['test_image_shape'] = test_image.shape
         ret['test_image_exists'] = True
