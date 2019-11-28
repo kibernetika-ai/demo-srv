@@ -34,17 +34,17 @@ def process(inputs, ctx, **kwargs):
         # LOG.info(type(test_image_2))
         # ret['test_image_shape'] = test_image.shape
         ret['test_image_exists'] = True
-        ret['test_image_type'] = type(test_image)
+        ret['test_image_type'] = str(type(test_image))
     test_text = inputs.get('test_text')
     if test_text is not None:
         ret['test_text'] = test_text
-        ret['test_text_type'] = type(test_text)
+        ret['test_text_type'] = str(type(test_text))
     test_int = inputs.get('test_int')
     if test_int is not None:
         ret['test_int'] = test_int
-        ret['test_int_type'] = type(test_int)
+        ret['test_int_type'] = str(type(test_int))
     test_float = inputs.get('test_float')
     if test_float is not None:
         ret['test_float'] = test_float
-        ret['test_float_type'] = type(test_float)
+        ret['test_float_type'] = str(type(test_float))
     return ret
