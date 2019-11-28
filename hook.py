@@ -22,9 +22,8 @@ def process(inputs, ctx, **kwargs):
     test_image = inputs.get('test_image')
     test_int = inputs.get('test_int')
     test_float = inputs.get('test_float')
-    LOG.info('input: ')
-    LOG.info('test_text: ', test_text)
-    LOG.info('test_image: ', test_image)
-    LOG.info('test_int: ', test_int)
-    LOG.info('test_float: ', test_float)
+    LOG.info(f'test_text: {test_text}')
+    LOG.info(f'test_image length: {len(test_image)}')
+    LOG.info(f'test_int: {test_int}')
+    LOG.info(f'test_float: {test_float}')
     return {'output': '{}{}'.format(PARAMS['params_text'], test_text)}
