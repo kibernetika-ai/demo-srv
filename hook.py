@@ -28,8 +28,8 @@ def process(inputs, ctx, **kwargs):
         LOG.info('test_image:')
         LOG.info(test_image)
         LOG.info(type(test_image))
-        test_image = cv2.imdecode(test_image, cv2.IMREAD_COLOR)
-        LOG.info(type(test_image))
+        test_image_2 = cv2.imdecode(np.array(test_image), cv2.IMREAD_COLOR)
+        LOG.info(type(test_image_2))
         # ret['test_image_shape'] = test_image.shape
         ret['test_image_exists'] = True
     test_text = inputs.get('test_text')
