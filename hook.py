@@ -1,6 +1,7 @@
-import cv2
+# import cv2
 import logging
-import numpy as np
+# import numpy as np
+from ml_serving.utils import helpers
 
 LOG = logging.getLogger(__name__)
 
@@ -24,17 +25,18 @@ def process(inputs, ctx, **kwargs):
     ret = {
         'params_text': PARAMS['params_text']
     }
-    test_image = inputs.get('test_image')
+    test_image, _ = helpers.load_image(inputs, 'input', rgb=False)
     if test_image is not None:
-        LOG.info('test_image:')
-        LOG.info(test_image)
-        LOG.info(type(test_image))
-        LOG.info(test_image.shape)
+        # LOG.info('test_image:')
+        # LOG.info(test_image)
+        # LOG.info(type(test_image))
+        # LOG.info(test_image.shape)
         # test_image_2 = cv2.imdecode(np.array(test_image[0]), cv2.IMREAD_COLOR)
         # LOG.info(type(test_image_2))
         # ret['test_image_shape'] = test_image.shape
         ret['test_image_exists'] = True
         ret['test_image_type'] = str(type(test_image))
+        ret['test_image_shape'] = test_image.shape
     test_text = inputs.get('test_text')
     if test_text is not None:
         ret['test_text'] = test_text
